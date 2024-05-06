@@ -105,7 +105,7 @@ class Controller {
     }
 
     public static function createWPUser($email, $role) {
-        $user_id = username_exists( $username );
+        $user_id = username_exists( $email );
 
         if ( $user_id ) {
             return $user_id;
@@ -114,7 +114,7 @@ class Controller {
             global $wpdb;
             $cfdb_table = $wpdb->prefix."db7_forms";
             
-            $form_id = '15';
+            $form_id = self::formBeneficiarioID();
             $like = '%"'.$email.'"%';
             $sql = "SELECT * FROM $cfdb_table WHERE form_post_id =$form_id AND form_value LIKE '$like' ";
             $sql = $wpdb->prepare($sql);
