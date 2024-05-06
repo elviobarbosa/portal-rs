@@ -65,3 +65,20 @@ function add_custom_image_sizes( $sizes ) {
 add_filter( 'image_size_names_choose', 'add_custom_image_sizes' );
 
 add_action( 'init', 'setup' );
+
+function custom_login_logo() {
+    echo '<style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(' . get_bloginfo('template_directory') . '/resources/images/portal-rs-logo.png);
+            height: 100px;
+            width: 300px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+    </style>';
+}
+add_action('login_enqueue_scripts', 'custom_login_logo');
+
+
+
