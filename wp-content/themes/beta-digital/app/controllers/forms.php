@@ -49,7 +49,6 @@ class Controller {
                     return array('success' => $send, 'title'=>'Ops, houve um erro no envio do email.', 'message' => $send);
                 }
             } else {
-                echo $form_id;
                 $code = self::randomCode();
                 $result = $wpdb->insert($table_name, array(
                     'email' => $email,

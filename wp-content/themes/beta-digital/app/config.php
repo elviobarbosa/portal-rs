@@ -33,7 +33,8 @@ function setup() {
         acf_add_options_page();
     endif;
 
-    register_nav_menu('header-menu',__( 'Menu Principal' ));
+    register_nav_menu('beneficiario-menu',__( 'Menu Beneficiario' ));
+    register_nav_menu('padrinho-menu',__( 'Menu Padrinho' ));
 	
 }
 
@@ -81,4 +82,7 @@ function custom_login_logo() {
 add_action('login_enqueue_scripts', 'custom_login_logo');
 
 
-
+function custom_login_page() {
+    return home_url('/login/');
+}
+add_filter('login_url', 'custom_login_page');

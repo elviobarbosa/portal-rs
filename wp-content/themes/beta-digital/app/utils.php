@@ -205,7 +205,7 @@ function footerJS()
                 }
             }
 		}
-        alert(event.detail.contactFormId);
+        
         if ( '<?php echo $formDoacaoID ?>' == event.detail.contactFormId ) {
             setTimeout(() => {
                 window.location.href = '<?php echo get_bloginfo('wpurl'); ?>/minhas-solicitacoes';

@@ -11,8 +11,13 @@ get_header();
 <main>
 <?php
     the_title('<h1>','</h1>');
+    ?>
+    <div class="btn btn--secondary">
+        <a href="<?php echo site_URL('solicitar-ajuda'); ?>" title="Preciso de ajuda">Solicitar nova ajuda</a>
+    </div><br>
+    <?php
     foreach ($solicitacoes['data'] as $solicitacao) {
-   // echo $solicitacao->form_id;
+ 
         $user_data = unserialize($solicitacao->form_value);
         
         ?>
