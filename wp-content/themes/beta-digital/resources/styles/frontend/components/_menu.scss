@@ -1,0 +1,195 @@
+.nav-container {
+	box-sizing: border-box;
+	padding: 1rem 2rem;
+	width: 100%;
+	z-index: 100;
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		@include border-radius(100%);
+		height: 100%;
+		left: 0%;
+		position: absolute;
+		top: -50%;
+		width: 100%;
+		z-index: -1;
+		background-color: $blue-light;
+	}
+
+	&.fixed {
+		left: 0;
+		position: fixed;
+		top: 0;
+	}
+
+	&__container {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	&__menu {
+		position: fixed;
+    	right: -100vw;
+		transition: all 1s ease-out;
+		z-index: 99;
+		width: 100vw;
+		background: white;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		height: 100vh;
+		top: 0;
+		display: flex;
+		align-items: center;
+
+		@include min-xl {
+			position: relative;
+			width: auto;
+			height: auto;
+			right: unset;
+		}
+	}
+
+	nav.main-menu {
+		width: 100%;
+
+		#menu-principal {
+			display: block;
+			list-style: none;
+			padding: 0;
+			width: 100%;
+			text-align: center;
+			margin: 0;
+
+			@include min-xl {
+				display: flex;
+				align-items: center;
+				height: 100%;
+			}
+
+			.menu-item {
+				color: color-theme('primary-color');
+				text-align: center;
+				padding: 2rem 0;
+		
+				&:not(:last-child) {
+					margin-bottom: 30px;
+				}
+		
+				@include min-xl {
+					text-align: left;
+		
+					&:not(:last-child) {
+						margin-bottom: 0;
+						margin-right: 20px;
+					}
+				}
+		
+				a {
+					font-size: 1.6rem;
+					font-weight: 500;
+					position: relative;
+					text-decoration: none;
+					text-transform: uppercase;
+					padding: 1rem;
+					color: $primary-color;
+		
+					
+		
+					&:before {
+						background-color: $primary-color;
+						bottom: -10px;
+						content: '';
+						height: 1px;
+						left: 0;
+						position: absolute;
+						transition: width 0.1s ease-in;
+						width: 0;
+					}
+		
+					&:hover::before {
+						width: 100%;
+					}
+				}
+		
+				&.current_page_item {
+					a {
+						&:before {
+							background-color: $primary-color;
+							bottom: -10px;
+							content: '';
+							height: 1px;
+							left: 0;
+							position: absolute;
+							transition: width 0.1s ease-in;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__logo {
+		z-index: 100;
+		
+		img {
+			@include max-md {
+				max-width: 120px;
+			}
+			@include min-md {
+				max-width: 200px;
+			}
+			
+		}
+	}
+
+	&__menu.active {
+		right: 0;
+		transition: all 1s ease-in-out;
+	}
+
+	&__control {
+		z-index: 100;
+
+		@include min-xl {
+			display: none;
+		}
+	}
+
+	.h-menu {
+		width: 3rem;
+	
+		&__line {
+			display: block;
+			width: 100%;
+			height: 0.4rem;
+			background-color: $gray-500;
+			margin-bottom: 0.4rem;
+			transition: all .3s ease-out;
+			@include border-radius(1.2rem);
+	
+		}
+	}
+	
+	.h-menu.active {
+		.h-menu__line {
+			&:first-child {
+				transform: rotate(45deg);
+				transition: all .3s ease-in-out;
+			}
+			&:last-child {
+				transform: rotate(-45deg);
+				margin-top: -0.8rem;
+				transition: all .3s ease-in-out;
+			}
+			&:nth-child(2) {
+				display: none;
+			}
+		}
+	}
+}

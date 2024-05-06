@@ -1,0 +1,28 @@
+@mixin container ($limit: 900px, $padmob: 20px, $paddesk: 60px) {
+  margin: 0 auto;
+  max-width: $limit;
+  box-sizing: border-box;
+
+  @include max-xl {
+    padding-left: px-rem($padmob);
+    padding-right: px-rem($padmob);
+  }
+
+  @include min-xl {
+    padding-left: px-rem($paddesk);
+    padding-right: px-rem($paddesk);
+  }
+}
+
+@mixin container-absolute ($limit: 1440px, $padmob: 3rem, $paddesk: 6rem) {
+  margin-inline: auto;
+  max-width: $limit;
+
+  @include max-xl {
+    margin-inline: $padmob;
+  }
+
+  @media (min-width: $screen-xl-min) and (max-width: (calc($limit + calc($paddesk * 2)))) {
+    margin-inline: $paddesk;
+  }
+}

@@ -1,0 +1,8 @@
+.solicitacao {
+    &__item {
+        @include min-md {
+            display: grid;
+            grid-template-columns: 60% auto;
+        }
+    }
+}

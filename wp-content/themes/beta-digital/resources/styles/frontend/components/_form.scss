@@ -1,0 +1,53 @@
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"], 
+input[type="date"],
+textarea,
+select
+ {
+   width: 100%;
+   @include border-radius(8px);
+   border: 1px solid $gray-200;
+   font-size: 18px;
+   padding: 5px 10px;
+   box-sizing: border-box;
+
+   &:focus {
+      outline: none; 
+      background-color: $green-200;
+      border: 1px solid $green-300;
+  }
+}
+
+input[type="submit"] {
+   background-color: $primary-color;
+   width: 100%;
+   color: white;
+   border: none;
+   @include border-radius(8px);
+   font-size: 18px;
+   padding: 5px 10px;
+   box-sizing: border-box;
+}
+
+label {
+   font: 16px;
+}
+
+h2 {
+   margin-top: 50px;
+}
+
+::-webkit-input-placeholder { /* Edge */
+   
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    
+}
+
+::placeholder {
+   
+}

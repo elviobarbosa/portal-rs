@@ -1,0 +1,27 @@
+.rounded-container {
+    @include border-radius(20px);
+    padding: 20px;
+
+
+    &--green-light {
+        background: $green-200;
+        border: 1px solid $green-300;
+    }
+
+    &--red-light {
+        background: $red-200;
+        border: 1px solid $red-300;
+
+    }
+
+    h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .btn {
+        margin-bottom: 10px;
+    }
+
+}
+

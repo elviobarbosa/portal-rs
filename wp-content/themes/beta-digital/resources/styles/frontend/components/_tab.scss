@@ -1,0 +1,25 @@
+/* Style the tab */
+.tab {
+    overflow: hidden;
+
+    &__button {
+        
+
+        &:hover {
+            
+        }
+
+        &.active {
+            
+        }
+    }
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}

@@ -1,0 +1,38 @@
+/* CSS Document */
+
+
+body{
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	font-family: $body-font;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: $headings;
+}
+
+h1 {
+	@include fluid-size(font-size, 24px, 44px, $min-vw, $max-vw);
+	color: $primary-color
+}
+
+h2 {
+	@include fluid-size(font-size, 18px, 36px, $min-vw, $max-vw);
+	color: $primary-color
+}
+
+p {
+	font-size: 16px;
+}
+
+main {
+	@include container();
+}
+
+figure {
+	padding: 0;
+	margin: 0;
+}
