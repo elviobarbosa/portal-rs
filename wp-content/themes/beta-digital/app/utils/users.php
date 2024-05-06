@@ -37,6 +37,7 @@ class Data {
             FROM $confirmado_table v 
             JOIN $cfdb_table c ON v.form_id = c.form_id 
             WHERE form_post_id = %d AND v.confirmado = 1
+            ORDER BY form_id DESC
             LIMIT %d OFFSET %d
         ", $form_id, $results_per_page, $offset);
         $wp_data = $wpdb->get_results($sql);
@@ -110,7 +111,7 @@ class Data {
             $offset = ($current_page - 1) * $results_per_page;
             $total_results = $wpdb->get_var("SELECT COUNT(*) FROM $cfdb_table WHERE form_post_id =$form_id AND form_value LIKE '$like'");
 
-            $sql = "SELECT * FROM $cfdb_table WHERE form_post_id =$form_id AND form_value LIKE '$like' LIMIT $results_per_page OFFSET $offset";
+            $sql = "SELECT * FROM $cfdb_table WHERE form_post_id =$form_id AND form_value LIKE '$like' ORDER BY form_id DESC LIMIT $results_per_page OFFSET $offset ";
             $sql = $wpdb->prepare($sql);
             $results = $wpdb->get_results($sql);
             return Array('data' => $results, 'total' => $total_results, 'current_page' => $current_page);

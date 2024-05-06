@@ -3,6 +3,8 @@ $controller_file = 'app/utils/communs.php';
 require_once $controller_file;
 
 $isProtected = \Communs\Utils::isProtectedPage();
+$user = wp_get_current_user();
+$user_role = $user->roles[0];
 if ($isProtected) {
 	if (is_user_logged_in()) {
 	} else {
@@ -10,8 +12,6 @@ if ($isProtected) {
 		wp_redirect(wp_login_url( $current_url ));
 	}
 }
-
-
 ?>
 <!doctype html>
 <html>
@@ -32,15 +32,33 @@ if ($isProtected) {
 			<a href="<?php bloginfo('wpurl');?>"><img src="<?php echo IMGPATH ?>/portal-rs-logo.png"></a>
 		</div>
 
+		 
 		<div class="nav-container__menu js-nav-menu">
+			
 			<?php 
+		
+
+			if ($user_role == 'beneficiario') {
 				wp_nav_menu( 
 				array( 
-					'theme_location' 	=> 'header-menu',
+					'theme_location' 	=> 'beneficiario-menu',
 					'menu_class'		=> 'menu',
 					'container'			=> 'nav',
 					'container_class' 	=> 'main-menu'
 				) ); 
+			}
+
+			if ($user_role == 'padrinho') {
+				wp_nav_menu( 
+				array( 
+					'theme_location' 	=> 'padrinho-menu',
+					'menu_class'		=> 'menu',
+					'container'			=> 'nav',
+					'container_class' 	=> 'main-menu'
+				) ); 
+			}
+			
+			
 			?>
 		</div>
 		<div class="nav-container__control">

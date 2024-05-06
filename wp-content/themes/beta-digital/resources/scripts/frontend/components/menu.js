@@ -10,6 +10,7 @@ export default class Menu {
     init() {
         const menu = document.querySelector(this.selector);
         const menuContainer = document.querySelector(this.classes.navContainer);
+        let initialOffsetTop = menuContainer.offsetTop; // Armazena a posição inicial
 
         if (!menu) return;
 
@@ -22,13 +23,17 @@ export default class Menu {
         });
 
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > menuContainer.offsetTop + 150) {
+            const scrollPosition = window.pageYOffset;
+
+            if (scrollPosition > initialOffsetTop) {
                 menuContainer.classList.add('fixed');
-                document.body.style.marginBlockStart = `${menuContainer.clientHeight / 10}rem`;
+                if (!menuContainer.style.paddingTop) {
+                    document.body.style.paddingTop = `${menuContainer.offsetHeight}px`
+                }
             } else {
                 menuContainer.classList.remove('fixed');
-                document.body.style.marginBlockStart = '0rem';
+                document.body.style.paddingTop = '0';
             }
-        })
+        });
     }
 }
