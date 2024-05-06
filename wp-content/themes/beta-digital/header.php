@@ -32,7 +32,7 @@ if ($isProtected) {
 			<a href="<?php bloginfo('wpurl');?>"><img src="<?php echo IMGPATH ?>/portal-rs-logo.png"></a>
 		</div>
 
-		<!-- <div class="nav-container__menu js-nav-menu">
+		<div class="nav-container__menu js-nav-menu">
 			<?php 
 				wp_nav_menu( 
 				array( 
@@ -42,13 +42,13 @@ if ($isProtected) {
 					'container_class' 	=> 'main-menu'
 				) ); 
 			?>
-		</div> -->
-		<!-- <div class="nav-container__control">
+		</div>
+		<div class="nav-container__control">
 			<div class="h-menu js-menu">
 				<span class="h-menu__line"></span>
 				<span class="h-menu__line"></span>
 				<span class="h-menu__line"></span>
 			</div>
-		</div> -->
+		</div>
 	</div>
  </div>

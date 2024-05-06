@@ -3,7 +3,8 @@ $controller_file = 'app/controllers/forms.php';
 require_once $controller_file;
 
 if (isset($_GET['email']) && !isset($_GET['code'])):
-    $createCode = \Forms\Controller::createCodeValidator($_GET['email'], 'voluntario');
+    $user = \Users\Data::getVoluntarioByEmail($_GET['email']);
+    $createCode = \Forms\Controller::createCodeValidator($_GET['email'], 'voluntario', $user[0]->form_id);
 endif;
 
 if (isset($_GET['email']) && isset($_GET['code'])):

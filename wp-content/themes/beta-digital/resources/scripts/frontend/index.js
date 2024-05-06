@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Carrosel from './components/carrosel';
 import Menu from './components/menu';
+import InputMasks from './components/input-masks';
 
 
 function domReady(fn) {
@@ -10,6 +11,7 @@ function domReady(fn) {
     if (document.readyState === "interactive" || document.readyState === "complete" ) {
       new Menu();
       new Carrosel();
+      new InputMasks();
     }
 }
 

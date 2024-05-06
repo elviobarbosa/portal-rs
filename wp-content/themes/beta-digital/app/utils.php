@@ -167,16 +167,22 @@ add_action('init', function() use ($novas_funcoes) {
 
 
  add_action('wp_footer', 'footerJS' );
+ $controller_file = 'controllers/forms.php';
+ require_once $controller_file;
+
 
 function footerJS()
 {
+    $formVoluntarioID = \Forms\Controller::formVoluntarioID();
+    $formBeneficiarioID = \Forms\Controller::formBeneficiarioID();
+    $formDoacaoID = \Forms\Controller::formDoacaoID();
 ?>
 
 	<script>
 		document.addEventListener( 'wpcf7mailsent', function( event ) {
 	    var inputs = event.detail.inputs;
 
-	 	if ( '5' == event.detail.contactFormId ) {
+	 	if ( '<?php echo $formVoluntarioID ?>' == event.detail.contactFormId ) {
             for ( let i = 0; i < inputs.length; i++ ) {
                 if ( 'email' == inputs[i].name ) {
                     sessionStorage.setItem('email-voluntario', inputs[i].value);
@@ -188,7 +194,7 @@ function footerJS()
             }
 		}
 
-        if ( '15' == event.detail.contactFormId ) {
+        if ( '<?php echo $formBeneficiarioID ?>' == event.detail.contactFormId ) {
             for ( let i = 0; i < inputs.length; i++ ) {
                 if ( 'email' == inputs[i].name ) {
                     sessionStorage.setItem('email-beneficiario', inputs[i].value);
@@ -198,6 +204,12 @@ function footerJS()
                 break;
                 }
             }
+		}
+        alert(event.detail.contactFormId);
+        if ( '<?php echo $formDoacaoID ?>' == event.detail.contactFormId ) {
+            setTimeout(() => {
+                window.location.href = '<?php echo get_bloginfo('wpurl'); ?>/minhas-solicitacoes';
+            }, 100);
 		}
 
 	}, false );

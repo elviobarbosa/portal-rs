@@ -9,7 +9,6 @@ get_header();
 ?>
 <main>
     <?php
-        print_r( $user->user_email );
         the_title('<h1>','</h1><hr>');
         the_content();
     ?>

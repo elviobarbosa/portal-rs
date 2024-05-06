@@ -10,11 +10,28 @@ class Controller {
         return $randomCode;
     }
 
-    public static function createCodeValidator($email, $type) {
+    public static function formID($title) {
+        $post_id = get_page_by_title($title, OBJECT, 'wpcf7_contact_form');
+        return $post_id->ID;
+    }
+
+    public static function formVoluntarioID() {
+        return self::formID('Voluntário');
+    }
+
+    public static function formBeneficiarioID() {
+        return self::formID('Beneficiário');
+    }
+
+    public static function formDoacaoID() {
+        return self::formID('Solicitar doação');
+    }
+
+    public static function createCodeValidator($email, $type, $form_id) {
     
         if (isset($email)) {
             global $wpdb;
-            $table_name = $wpdb->prefix."voluntario_confirmado";
+            $table_name = CONFIRMADO_TABLE;
             $existing_user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $email));
 
             if ($existing_user) {
@@ -29,18 +46,22 @@ class Controller {
                 if ($send) {
                     return array('success' => $send, 'title'=>'Confirme seu email', 'message' => 'Enviamos um email para confirmar o cadastro.');
                 } else {
-                    return array('success' => $send, 'title'=>'Ops, houve um erro.', 'message' => $send);
+                    return array('success' => $send, 'title'=>'Ops, houve um erro no envio do email.', 'message' => $send);
                 }
             } else {
+                echo $form_id;
                 $code = self::randomCode();
                 $result = $wpdb->insert($table_name, array(
                     'email' => $email,
                     'codigo' => $code,
-                    'tipo' => $type
+                    'tipo' => $type,
+                    'form_id' => $form_id
+                    
                 ), array(
                     '%s',
                     '%s',
-                    '%s'
+                    '%s',
+                    '%d'
                 ));
 
                 if(!$result) {
@@ -52,7 +73,7 @@ class Controller {
                 if ($send) {
                     return array('success' => $send, 'title'=>'Confirme seu email', 'message' => 'Enviamos um email para confirmar o cadastro.');
                 } else {
-                    return array('success' => $send, 'title'=>'Ops, houve um erro.',  'message' => $send);
+                    return array('success' => $send, 'title'=>'Ops, houve um erro no envio do email.',  'message' => $send);
                 }
             }
         }
@@ -62,7 +83,7 @@ class Controller {
     
         if (isset($email)) {
             global $wpdb;
-            $table_name = $wpdb->prefix."voluntario_confirmado";
+            $table_name = CONFIRMADO_TABLE;
             $existing_user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE email = %s AND codigo = %s", $email, $code));
 
             if ($existing_user) {
@@ -77,7 +98,7 @@ class Controller {
         
                 
                 return array('success' => true, 'title'=>'Email confirmado', 'message' => 'Seu email foi confirmado com sucesso.');
-                //$send = self::sendCode($email, $code, $type);
+                
             } else {
                 return array('success' => $send, 'title'=>'Ops, houve um erro.',  'message' => $send);
             }
@@ -115,7 +136,7 @@ class Controller {
         $subject = 'Seu código de confirmação';
         $body = 'Clique no link abaixo para confirmar seu cadastro.<br><br>'. get_bloginfo('wpurl').'/confirmar-'. $type .'?email='.$email.'&code='.$code;
 
-        $headers = array('Content-Type: text/html; charset=UTF-8', 'From: '. get_option( 'admin_email' ) );
+        $headers = array('Content-Type: text/html; charset=UTF-8', 'From: noreply@portalsosrs.com.br' );
         $send = wp_mail($email, $subject, $body, $headers);
 
         if ( $send ) {

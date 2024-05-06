@@ -16,9 +16,9 @@
          <a href="<?php echo site_URL('seja-voluntario'); ?>" title="Ser voluntário">Ser voluntário</a>
       </div>
 
-      <div class="btn btn--primary">
+      <!-- <div class="btn btn--primary">
          <a href="<?php echo site_URL('seja-voluntario'); ?>" title="Doar">Apadrinhar</a>
-      </div>
+      </div> -->
    </div>
 
    <div class="rounded-container rounded-container--red-light">
@@ -28,7 +28,7 @@
          <div class="btn btn--secondary">
             <a href="<?php echo site_URL('preciso-de-ajuda'); ?>" title="Preciso de ajuda">Preciso de ajuda</a>
          </div>
-   </div>
+      </div>
    
 </main>
 

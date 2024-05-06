@@ -392,6 +392,7 @@ h2 {
   font-size: 16px;
   font-weight: 600;
   display: inline-block;
+  width: 100%;
 }
 .btn:focus {
   outline: 0;
@@ -415,20 +416,6 @@ h2 {
   z-index: 100;
   position: relative;
 }
-.nav-container::before {
-  content: "";
-  display: block;
-  border-radius: 100%;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  height: 100%;
-  left: 0%;
-  position: absolute;
-  top: -50%;
-  width: 100%;
-  z-index: -1;
-  background-color: #e9f8ff;
-}
 .nav-container.fixed {
   left: 0;
   position: fixed;
@@ -437,7 +424,7 @@ h2 {
 .nav-container__container {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   overflow: hidden;
 }
 .nav-container__menu {
@@ -455,18 +442,10 @@ h2 {
   display: flex;
   align-items: center;
 }
-@media (min-width: 1200px) {
-  .nav-container__menu {
-    position: relative;
-    width: auto;
-    height: auto;
-    right: unset;
-  }
-}
 .nav-container nav.main-menu {
   width: 100%;
 }
-.nav-container nav.main-menu #menu-principal {
+.nav-container nav.main-menu .menu {
   display: block;
   list-style: none;
   padding: 0;
@@ -474,31 +453,15 @@ h2 {
   text-align: center;
   margin: 0;
 }
-@media (min-width: 1200px) {
-  .nav-container nav.main-menu #menu-principal {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-}
-.nav-container nav.main-menu #menu-principal .menu-item {
+.nav-container nav.main-menu .menu .menu-item {
   color: #119d57;
   text-align: center;
   padding: 2rem 0;
 }
-.nav-container nav.main-menu #menu-principal .menu-item:not(:last-child) {
+.nav-container nav.main-menu .menu .menu-item:not(:last-child) {
   margin-bottom: 30px;
 }
-@media (min-width: 1200px) {
-  .nav-container nav.main-menu #menu-principal .menu-item {
-    text-align: left;
-  }
-  .nav-container nav.main-menu #menu-principal .menu-item:not(:last-child) {
-    margin-bottom: 0;
-    margin-right: 20px;
-  }
-}
-.nav-container nav.main-menu #menu-principal .menu-item a {
+.nav-container nav.main-menu .menu .menu-item a {
   font-size: 1.6rem;
   font-weight: 500;
   position: relative;
@@ -507,7 +470,7 @@ h2 {
   padding: 1rem;
   color: #119d57;
 }
-.nav-container nav.main-menu #menu-principal .menu-item a:before {
+.nav-container nav.main-menu .menu .menu-item a:before {
   background-color: #119d57;
   bottom: -10px;
   content: "";
@@ -517,10 +480,10 @@ h2 {
   transition: width 0.1s ease-in;
   width: 0;
 }
-.nav-container nav.main-menu #menu-principal .menu-item a:hover::before {
+.nav-container nav.main-menu .menu .menu-item a:hover::before {
   width: 100%;
 }
-.nav-container nav.main-menu #menu-principal .menu-item.current_page_item a:before {
+.nav-container nav.main-menu .menu .menu-item.current_page_item a:before {
   background-color: #119d57;
   bottom: -10px;
   content: "";
@@ -549,11 +512,6 @@ h2 {
 }
 .nav-container__control {
   z-index: 100;
-}
-@media (min-width: 1200px) {
-  .nav-container__control {
-    display: none;
-  }
 }
 .nav-container .h-menu {
   width: 3rem;
@@ -625,6 +583,55 @@ h2 {
     display: grid;
     grid-template-columns: 60% auto;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+@media (min-width: 992px) {
+  .pagination {
+    margin-bottom: 0.9375rem;
+  }
+}
+.pagination span, .pagination a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  border: 1px solid #A2A2A2;
+  color: #df2a4e;
+  transition: all ease 0.3s;
+}
+@media (min-width: 992px) {
+  .pagination span, .pagination a {
+    width: 2.1875rem;
+    height: 2.1875rem;
+  }
+}
+.pagination span.current, .pagination a.current {
+  background-color: #119d57;
+  color: white;
+  border-color: #119d57;
+}
+.pagination span:hover, .pagination a:hover {
+  background-color: #119d57;
+  color: white;
+  border-color: #119d57;
+}
+.pagination .next, .pagination .prev {
+  width: inherit;
+  border: none;
+}
+.pagination .next:hover, .pagination .prev:hover {
+  background-color: transparent;
+  color: #119d57;
+  border: none;
 }
 
 .front-page .rounded-container {
